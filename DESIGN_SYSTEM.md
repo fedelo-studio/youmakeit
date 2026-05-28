@@ -66,17 +66,22 @@ Same usage rules as Fedelo's orange:
 - Status LED.
 - Editorial emphasis word (e.g. the lime "real?" in the end-CTA).
 
-### 2.2 Dark mode is global on YouMakeIt
+### 2.2 Single-mode light, identical to Fedelo
 
-Fedelo is single-mode (light) with `.theme-dark` scoping the hero, the nav over
-the hero, and the end-CTA card. YouMakeIt **ships a global toggle**
-(`data-mode="dark"` on `<html>`) because the WebGL hero, the end-CTA card, and
-the featured pricing tier all rely on full-page light/dark coordination.
+YouMakeIt is single-mode (light) at the root — same architecture as
+fedelo.studio. There is **no global dark/light toggle**, no
+`data-mode` attribute, no user-facing theme switcher.
 
-Both options are supported in `variables.css`:
-- `[data-mode="dark"]` — page-level (the YouMakeIt toggle).
-- `.theme-dark` — scoped, identical to Fedelo. Available if a future section
-  needs it.
+The dark surfaces are scoped via `.theme-dark` on three containers:
+
+| Element                       | Dark scope behaviour                                     |
+|-------------------------------|-----------------------------------------------------------|
+| `.hero-shader`                | Always `.theme-dark` (the WebGL hero is the dark moment). |
+| `.chrome-top` (nav)           | Starts `.theme-dark` because it sits over the hero. `app.js` drops the class as soon as the hero scrolls off the top, so the nav adopts the light page palette below. |
+| `.end-cta-card`               | Always `.theme-dark` (the closing card mirrors the hero's energy). |
+
+Both shader instances (hero + end-CTA) are pinned to `forceDark: true` since
+their containers are always in a `.theme-dark` scope.
 
 ### 2.3 YouMakeIt-only tokens
 
@@ -105,7 +110,7 @@ in `css/variables.css`.
 | `.proc-flow` (zigzag timeline)                | `components.css` | 5-stage CSS-grid timeline. |
 | `.ocard.featured` (pricing tier)              | `components.css` | Dark-on-light in light mode, lime-on-dark in dark mode. |
 | `.end-cta-card` (cursor-reactive lime CTA)    | `components.css` + `js/shader-bg.js` | Same shader, "bloom" mood. |
-| `.theme-toggle` + mobile menu                 | `components.css` + `js/app.js` | Page-wide dark/light switch. |
+| Mobile menu                                   | `components.css` + `js/app.js` | Burger-driven full-screen nav. |
 
 ---
 

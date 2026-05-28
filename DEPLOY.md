@@ -50,15 +50,23 @@ production deploy on the youmakeit.ch domain:
 
 ### 3. DNS at your registrar
 
-For Vercel-hosted production, the canonical records are:
+For Vercel-hosted production, the canonical records (read from Vercel's
+DNS panel on 2026-05-28) are:
 
 | Type  | Host       | Value                  |
 |-------|------------|-------------------------|
-| A     | `@`        | `76.76.21.21`          |
-| CNAME | `www`      | `cname.vercel-dns.com` |
+| A     | `@`        | `216.198.79.1`         |
 
-(If your registrar's UI uses "Name" instead of "Host", same thing. If it
-requires the full domain — `youmakeit.ch.` and `www.youmakeit.ch.` — use those.)
+That's it — apex-only. No www subdomain is set up by default.
+
+Notes:
+- Vercel's older `76.76.21.21` IP still works but is being phased out;
+  `216.198.79.1` is the new recommended apex IP.
+- If you later want `www.youmakeit.ch` to also work, add the www subdomain
+  in Vercel → Domains and set `CNAME www → cname.vercel-dns.com` at your
+  registrar.
+- If your registrar's UI uses "Name" instead of "Host", same thing. If it
+  requires the full domain — `youmakeit.ch.` — use that with the trailing dot.
 
 Wait 1–5 minutes for DNS to propagate. Vercel will auto-verify and issue
 a Let's Encrypt cert.

@@ -6,45 +6,27 @@
 (function () {
   'use strict';
 
-  /* ----- Scrolled nav state ----- */
+  /* ----- Nav state on scroll -----
+     The nav starts with .theme-dark because it floats over the dark hero.
+     Once the user has scrolled past the hero, drop .theme-dark so the nav
+     adopts the light page palette. Same architecture as fedelo.studio. */
   var nav = document.getElementById('nav');
-  var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 24); };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  var hero = document.getElementById('hero-shader');
 
-  /* ----- Theme toggle (system pref + local override) ----- */
-  var root = document.documentElement;
-  var toggle = document.getElementById('theme-toggle');
-  var iconLight = toggle.querySelector('.icon-light');
-  var iconDark  = toggle.querySelector('.icon-dark');
-
-  var renderIcon = function () {
-    var dark = root.getAttribute('data-mode') === 'dark';
-    iconLight.style.display = dark ? 'none' : 'block';
-    iconDark.style.display  = dark ? 'block' : 'none';
-    toggle.setAttribute('aria-pressed', dark ? 'true' : 'false');
+  var updateNavState = function () {
+    nav.classList.toggle('scrolled', window.scrollY > 24);
+    if (hero) {
+      var heroBottom = hero.getBoundingClientRect().bottom;
+      // While the hero is at all visible, keep the nav dark. As soon as the
+      // hero scrolls off the top (its bottom edge passes the nav baseline),
+      // switch the nav to the light page palette.
+      var navH = nav.getBoundingClientRect().height || 64;
+      nav.classList.toggle('theme-dark', heroBottom > navH);
+    }
   };
-  renderIcon();
-
-  toggle.addEventListener('click', function () {
-    var next = root.getAttribute('data-mode') === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-mode', next);
-    try { localStorage.setItem('youmakeit-mode', next); } catch (e) {}
-    renderIcon();
-    var meta = document.querySelector('meta[name="theme-color"]:not([media])');
-    if (meta) meta.setAttribute('content', next === 'dark' ? '#080808' : '#ffffff');
-  });
-
-  /* React to OS theme changes unless the user picked one explicitly */
-  try {
-    var mq = window.matchMedia('(prefers-color-scheme: dark)');
-    mq.addEventListener('change', function (e) {
-      var stored = localStorage.getItem('youmakeit-mode');
-      if (stored) return;
-      root.setAttribute('data-mode', e.matches ? 'dark' : 'light');
-      renderIcon();
-    });
-  } catch (e) {}
+  window.addEventListener('scroll', updateNavState, { passive: true });
+  window.addEventListener('resize', updateNavState, { passive: true });
+  updateNavState();
 
   /* ----- Reveal on scroll ----- */
   var io = new IntersectionObserver(function (entries) {

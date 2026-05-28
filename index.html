@@ -5,21 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>YouMakeIt — Turn your idea into a real digital product</title>
 <meta name="description" content="A guided launch program from Fedelo Studio. Strategy, design, build and launch your MVP — with the right mix of UX, AI tools and hands-on coaching.">
-<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#080808" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23c6f432'/><text x='16' y='22' text-anchor='middle' font-family='system-ui' font-size='18' font-weight='600' fill='%23050505'>y</text></svg>">
-
-<!-- Boot theme synchronously to avoid FOUC -->
-<script>
-(() => {
-  try {
-    const saved = localStorage.getItem('youmakeit-mode');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const mode = saved ?? (prefersDark ? 'dark' : 'light');
-    document.documentElement.setAttribute('data-mode', mode);
-  } catch { document.documentElement.setAttribute('data-mode', 'light'); }
-})();
-</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,8 +21,11 @@
 
 <body>
 
-<!-- ========== TOP NAV ========== -->
-<header class="chrome-top" id="nav">
+<!-- ========== TOP NAV ==========
+     Nav starts with .theme-dark because it sits over the dark hero.
+     app.js drops .theme-dark once the user has scrolled past the hero,
+     so the nav matches the light background below. -->
+<header class="chrome-top theme-dark" id="nav">
   <div style="display:flex; align-items:center; gap:24px;">
     <a class="brand" href="/">
       <span class="brand-mark">youmakeit<span class="dot">.</span></span>
@@ -54,18 +44,6 @@
     <a href="#why" class="nav-link">Studio</a>
   </nav>
   <div class="chrome-actions">
-    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-      <span class="theme-toggle-track">
-        <span class="theme-toggle-thumb">
-          <svg class="icon-light" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
-          </svg>
-          <svg class="icon-dark" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:none">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-          </svg>
-        </span>
-      </span>
-    </button>
     <a class="cta-pill cta-pill--desktop" href="#final">
       Book a discovery call <span class="arr"></span>
     </a>
@@ -95,7 +73,7 @@
 </div>
 
 <!-- ========== HERO ========== -->
-<section class="hero-shader" id="hero-shader" data-hero-mood="spotlight">
+<section class="hero-shader theme-dark" id="hero-shader" data-hero-mood="spotlight">
   <div class="hero-fade-top" aria-hidden="true"></div>
   <div class="hero-fade-bottom" aria-hidden="true"></div>
 
@@ -511,7 +489,7 @@
 
 <!-- ========== END CTA ========== -->
 <div class="end-cta-wrap" id="final">
-  <div class="end-cta-card reveal" id="end-cta-card" data-hero-mood="bloom">
+  <div class="end-cta-card theme-dark reveal" id="end-cta-card" data-hero-mood="bloom">
     <div class="end-cta-vignette" aria-hidden="true"></div>
     <div class="end-cta-card-inner">
       <div class="end-cta-eye">Cohort 01 · Q1 '26</div>

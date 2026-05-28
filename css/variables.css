@@ -174,29 +174,13 @@
 }
 
 /* ─────────────────────────────────────────────
-   DARK MODE
-   YouMakeIt ships a global dark mode toggle (data-mode="dark"
-   on <html>). Fedelo doesn't, but the WebGL hero on YouMakeIt
-   needs full dark/light support, so we keep it here.
-   The token deltas mirror Fedelo's .theme-dark scope.
+   SCOPED DARK PALETTE
+   Single-mode (light) at the root — same architecture as
+   fedelo.studio. Apply .theme-dark to any container (hero,
+   nav while it sits over the hero, end-CTA card) to invert
+   locally. `color: var(--fg)` is forced so descendants that
+   inherit color pick up the locally-scoped --fg.
    ───────────────────────────────────────────── */
-[data-mode="dark"] {
-  --bg: #080808;
-  --bg-soft: #101010;
-  --fg: #f5f5f2;
-  --fg-dim: rgba(245, 245, 242, 0.62);
-  --fg-mute: rgba(245, 245, 242, 0.38);
-  --line: rgba(245, 245, 242, 0.13);
-  --line-soft: rgba(245, 245, 242, 0.06);
-  --line-strong: rgba(245, 245, 242, 0.20);
-  --card-dark: #161616;
-  --card-light: #242422;
-  color: var(--fg);
-}
-
-/* Scoped dark — apply .theme-dark to any subtree to invert
-   locally (matches the Fedelo pattern, useful for hero-on-light
-   pages). */
 .theme-dark {
   --bg: #080808;
   --bg-soft: #101010;
@@ -205,6 +189,7 @@
   --fg-mute: rgba(245, 245, 242, 0.38);
   --line: rgba(245, 245, 242, 0.13);
   --line-soft: rgba(245, 245, 242, 0.06);
+  --line-strong: rgba(245, 245, 242, 0.20);
   --card-dark: #161616;
   --card-light: #242422;
   color: var(--fg);

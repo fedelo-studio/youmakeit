@@ -66,10 +66,9 @@ if git push -u origin main --force; then
   echo ""
   echo "  Next steps (already detailed in DEPLOY.md):"
   echo "    1. Vercel → youmakeit → Settings → Domains"
-  echo "       → add 'youmakeit.ch' and 'www.youmakeit.ch'"
-  echo "    2. DNS at your registrar:"
-  echo "         A     @     76.76.21.21"
-  echo "         CNAME www   cname.vercel-dns.com"
+  echo "       → add 'youmakeit.ch'"
+  echo "    2. DNS at your registrar (single record):"
+  echo "         A     @     216.198.79.1"
   echo ""
 else
   echo ""

@@ -19,9 +19,6 @@ html { scroll-behavior: smooth; }
   html { scroll-behavior: auto; }
 }
 
-/* Theme-color transitions on dark-mode toggle (YouMakeIt-only) */
-html, body { transition: background-color .35s var(--ease-out), color .35s var(--ease-out); }
-
 body {
   font-size: var(--text-base);
   line-height: var(--lh-relaxed);

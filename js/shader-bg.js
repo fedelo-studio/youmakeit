@@ -400,46 +400,34 @@ function createShaderBg(container, options) {
 /* ---------- mounts ---------- */
 
 (function mount() {
-  var root = document.documentElement;
-  var instances = [];
+  /* Both shader containers (hero + end-CTA card) live inside a
+     .theme-dark scope, so the shader is pinned to dark regardless
+     of page-level theme. Same architecture as fedelo.studio. */
 
-  /* Hero — follows the page theme, spotlight mood (preserved from earlier choice) */
   var hero = document.getElementById('hero-shader');
   if (hero) {
     hero.style.setProperty('--hero-glow', '#c6f432');
     var heroBg = createShaderBg(hero, {
-      color:    '#c6f432',
-      darkMode: root.getAttribute('data-mode') === 'dark',
-      strength: 1.6,
-      size:     1.0,
-      mood:     'spotlight',
+      color:     '#c6f432',
+      forceDark: true,
+      strength:  1.6,
+      size:      1.0,
+      mood:      'spotlight',
     });
-    instances.push(heroBg);
     window.__youmakeitFlowField = heroBg;
   }
 
-  /* Final CTA — also follows the page theme; bloom mood for the closing moment */
   var finalCard = document.getElementById('end-cta-card');
   if (finalCard) {
     finalCard.style.setProperty('--hero-glow', '#c6f432');
-    var finalBg = createShaderBg(finalCard, {
+    createShaderBg(finalCard, {
       color:     '#c6f432',
-      darkMode:  root.getAttribute('data-mode') === 'dark',
+      forceDark: true,
       strength:  1.4,
       size:      1.4,
       mood:      'bloom',
       textReact: true,
     });
-    instances.push(finalBg);
-  }
-
-  /* Single observer keeps every shader in sync with the page theme toggle */
-  if (instances.length) {
-    var themeMo = new MutationObserver(function () {
-      var dark = root.getAttribute('data-mode') === 'dark';
-      for (var i = 0; i < instances.length; i++) instances[i].setDarkMode(dark);
-    });
-    themeMo.observe(root, { attributes: true, attributeFilter: ['data-mode'] });
   }
 })();
 
