@@ -1,0 +1,19 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Vercel
+.vercel/
+
+# Node (not used today, future-proof)
+node_modules/
+*.log
+
+# Backup of the original single-file build (kept locally for reference)
+_ORIGINAL_YouMakeIt.html

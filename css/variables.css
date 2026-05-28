@@ -1,0 +1,211 @@
+/* ============================================================
+   YouMakeIt — Design tokens
+   Variant of the Fedelo Studio design system.
+   Same typography, spacing, motion. One thing differs: --hot.
+   Fedelo uses orange #ff4a1c; YouMakeIt uses lime #c6f432.
+   ============================================================ */
+
+:root {
+  /* ─────────────────────────────────────────────
+     COLOR — light mode (root)
+     Identical to Fedelo, with the brand accent overridden.
+     ───────────────────────────────────────────── */
+  --bg: #ffffff;
+  --bg-soft: #fafafa;
+  --fg: #050505;
+  --fg-dim: rgba(10, 10, 10, 0.55);
+  --fg-mute: rgba(10, 10, 10, 0.38);
+  --line: rgba(10, 10, 10, 0.08);
+  --line-soft: rgba(10, 10, 10, 0.04);
+  --line-strong: rgba(10, 10, 10, 0.14);
+  --card-dark: #0a0a0a;
+  --card-light: #f4f4f2;
+  --accent: #0a0a0a;
+
+  /* ─────────────────────────────────────────────
+     BRAND ACCENT — the only single hue in the system.
+     Fedelo orange → YouMakeIt lime. Used for ::selection,
+     eyebrow tick, glow on dark CTAs, marks, status LED.
+     ───────────────────────────────────────────── */
+  --hot: #c6f432;
+  --hot-rgb: 198, 244, 50;
+  --hot-deep: #94c919;
+  --hot-soft: #ebfaa8;
+  --hot-ink: #0a0a0a;  /* readable text colour on hot fill */
+  --led:    #c6f432;   /* status LED shares the brand colour */
+
+  /* ─────────────────────────────────────────────
+     TYPOGRAPHY — families (Fedelo-aligned)
+     ───────────────────────────────────────────── */
+  --font-sans: 'Strawford', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* legacy aliases kept for the migrated YouMakeIt markup */
+  --display: var(--font-sans);
+  --body:    var(--font-sans);
+  --mono:    var(--font-mono);
+
+  /* ─────────────────────────────────────────────
+     TYPOGRAPHY — weights (3-step ladder)
+     Headlines stay regular 400, like Fedelo. The hierarchy
+     is carried by size + tracking, never weight.
+     ───────────────────────────────────────────── */
+  --fw-light:   300;
+  --fw-regular: 400;
+  --fw-medium:  500;
+
+  /* ─────────────────────────────────────────────
+     TYPOGRAPHY — fluid type scale (identical to Fedelo)
+     ───────────────────────────────────────────── */
+  --text-eyebrow: 11px;
+  --text-caption: 12px;
+  --text-sm:      14px;
+  --text-base:    16px;
+  --text-md:      clamp(16px, 0.4vw + 14.5px, 18px);
+  --text-lg:      clamp(18px, 0.6vw + 16px, 22px);
+  --text-xl:      clamp(20px, 1vw + 16px, 24px);
+  --text-2xl:     clamp(24px, 1.5vw + 18px, 32px);
+  --text-3xl:     clamp(28px, 2.5vw + 18px, 40px);
+  --text-4xl:     clamp(36px, 4vw + 18px, 56px);
+  --text-5xl:     clamp(48px, 6vw + 16px, 72px);
+  --text-6xl:     clamp(64px, 8vw + 16px, 96px);
+  --text-mega:    clamp(72px, 10vw + 16px, 128px);
+
+  /* ─────────────────────────────────────────────
+     TYPOGRAPHY — line heights (4 values)
+     ───────────────────────────────────────────── */
+  --lh-tight:   1;
+  --lh-snug:    1.1;
+  --lh-normal:  1.2;
+  --lh-relaxed: 1.5;
+
+  /* ─────────────────────────────────────────────
+     TYPOGRAPHY — letter spacing (5 values)
+     ───────────────────────────────────────────── */
+  --ls-tightest: -0.04em;
+  --ls-tight:    -0.025em;
+  --ls-snug:     -0.01em;
+  --ls-normal:    0;
+  --ls-wide:      0.08em;
+
+  /* ─────────────────────────────────────────────
+     SPACING — 8pt grid (identical to Fedelo)
+     ───────────────────────────────────────────── */
+  --space-0:   0;
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   24px;
+  --space-6:   32px;
+  --space-7:   40px;
+  --space-8:   48px;
+  --space-9:   64px;
+  --space-10:  80px;
+  --space-11:  96px;
+  --space-12:  128px;
+  --space-13:  160px;
+
+  /* ─────────────────────────────────────────────
+     RADIUS
+     ───────────────────────────────────────────── */
+  --radius-sm:     4px;
+  --radius-md:     8px;
+  --radius-lg:     16px;
+  --radius-xl:     24px;
+  --radius-pill:   999px;
+  --radius-circle: 50%;
+
+  /* ─────────────────────────────────────────────
+     SHADOWS
+     ───────────────────────────────────────────── */
+  --shadow-sm: 0 1px 0 0 color-mix(in srgb, var(--fg) 6%, transparent);
+  --shadow-md: 0 8px 24px -12px color-mix(in srgb, var(--fg) 18%, transparent);
+  --shadow-lg:
+    0 1px 0 0 color-mix(in srgb, var(--fg) 6%, transparent),
+    0 30px 80px -40px color-mix(in srgb, var(--fg) 20%, transparent);
+  --shadow-deep:
+    0 1px 0 0 color-mix(in srgb, var(--fg) 8%, transparent),
+    0 30px 80px -32px color-mix(in srgb, var(--fg) 30%, transparent);
+  /* Lime glow — used on the dark-mode CTA pill, like Fedelo's orange glow */
+  --shadow-glow:
+    0 1px 0 0 color-mix(in srgb, var(--fg) 4%, transparent),
+    0 8px 16px -8px color-mix(in srgb, var(--fg) 18%, transparent),
+    0 32px 64px -24px rgba(var(--hot-rgb), 0.36);
+
+  /* ─────────────────────────────────────────────
+     Z-INDEX
+     ───────────────────────────────────────────── */
+  --z-base:        1;
+  --z-overlay:    10;
+  --z-nav:        50;
+  --z-tweaks:     80;
+  --z-modal:     100;
+  --z-transition: 200;
+
+  /* ─────────────────────────────────────────────
+     CONTAINER WIDTHS
+     ───────────────────────────────────────────── */
+  --container-narrow:  720px;
+  --container-md:     1080px;
+  --container-wide:   1320px;
+  --container-full:   1480px;
+
+  /* ─────────────────────────────────────────────
+     MOTION — durations + easing
+     ───────────────────────────────────────────── */
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --ease:     cubic-bezier(.32, .72, 0, 1);
+  --ease-soft: cubic-bezier(.4, 0, .2, 1);
+  --t-fast:   150ms;
+  --t-base:   250ms;
+  --t-slow:   400ms;
+
+  --motion: 1;
+
+  /* ─────────────────────────────────────────────
+     YOUMAKEIT-ONLY LAYOUT shortcuts
+     Page shell, section padding, card padding — kept as variables
+     so the hero / sections / cards breathe identically.
+     ───────────────────────────────────────────── */
+  --shell-max: var(--container-full);
+  --shell-pad: clamp(20px, 4vw, 40px);
+  --section-pad-y: clamp(72px, 9vw, 128px);
+  --card-pad: clamp(20px, 2.4vw, 32px);
+}
+
+/* ─────────────────────────────────────────────
+   DARK MODE
+   YouMakeIt ships a global dark mode toggle (data-mode="dark"
+   on <html>). Fedelo doesn't, but the WebGL hero on YouMakeIt
+   needs full dark/light support, so we keep it here.
+   The token deltas mirror Fedelo's .theme-dark scope.
+   ───────────────────────────────────────────── */
+[data-mode="dark"] {
+  --bg: #080808;
+  --bg-soft: #101010;
+  --fg: #f5f5f2;
+  --fg-dim: rgba(245, 245, 242, 0.62);
+  --fg-mute: rgba(245, 245, 242, 0.38);
+  --line: rgba(245, 245, 242, 0.13);
+  --line-soft: rgba(245, 245, 242, 0.06);
+  --line-strong: rgba(245, 245, 242, 0.20);
+  --card-dark: #161616;
+  --card-light: #242422;
+  color: var(--fg);
+}
+
+/* Scoped dark — apply .theme-dark to any subtree to invert
+   locally (matches the Fedelo pattern, useful for hero-on-light
+   pages). */
+.theme-dark {
+  --bg: #080808;
+  --bg-soft: #101010;
+  --fg: #f5f5f2;
+  --fg-dim: rgba(245, 245, 242, 0.62);
+  --fg-mute: rgba(245, 245, 242, 0.38);
+  --line: rgba(245, 245, 242, 0.13);
+  --line-soft: rgba(245, 245, 242, 0.06);
+  --card-dark: #161616;
+  --card-light: #242422;
+  color: var(--fg);
+}

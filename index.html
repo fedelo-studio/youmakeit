@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YouMakeIt — Turn your idea into a real digital product</title>
+<meta name="description" content="A guided launch program from Fedelo Studio. Strategy, design, build and launch your MVP — with the right mix of UX, AI tools and hands-on coaching.">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#080808" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23c6f432'/><text x='16' y='22' text-anchor='middle' font-family='system-ui' font-size='18' font-weight='600' fill='%23050505'>y</text></svg>">
+
+<!-- Boot theme synchronously to avoid FOUC -->
+<script>
+(() => {
+  try {
+    const saved = localStorage.getItem('youmakeit-mode');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const mode = saved ?? (prefersDark ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-mode', mode);
+  } catch { document.documentElement.setAttribute('data-mode', 'light'); }
+})();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- YouMakeIt design system (Fedelo-aligned tokens, lime accent) -->
+<link rel="stylesheet" href="/css/fonts.css">
+<link rel="stylesheet" href="/css/variables.css">
+<link rel="stylesheet" href="/css/reset.css">
+<link rel="stylesheet" href="/css/components.css">
+</head>
+
+<body>
+
+<!-- ========== TOP NAV ========== -->
+<header class="chrome-top" id="nav">
+  <div style="display:flex; align-items:center; gap:24px;">
+    <a class="brand" href="/">
+      <span class="brand-mark">youmakeit<span class="dot">.</span></span>
+    </a>
+    <span class="brand-status">
+      <span class="status-led"></span>
+      Cohort 01 · Q1 '26
+    </span>
+  </div>
+  <nav class="nav nav--desktop">
+    <a href="#problem" class="nav-link">Why</a>
+    <a href="#solution" class="nav-link">System</a>
+    <a href="#process" class="nav-link">Process</a>
+    <a href="#deliverables" class="nav-link">Deliverables</a>
+    <a href="#offer" class="nav-link">Program</a>
+    <a href="#why" class="nav-link">Studio</a>
+  </nav>
+  <div class="chrome-actions">
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-toggle-track">
+        <span class="theme-toggle-thumb">
+          <svg class="icon-light" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+          <svg class="icon-dark" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:none">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </span>
+      </span>
+    </button>
+    <a class="cta-pill cta-pill--desktop" href="#final">
+      Book a discovery call <span class="arr"></span>
+    </a>
+    <button type="button" class="burger" id="burger" aria-label="Open menu">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ========== MOBILE MENU ========== -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true">
+  <div class="mobile-menu-eye">
+    <span class="status-led"></span>
+    Cohort 01 · Q1 '26
+  </div>
+  <nav class="mobile-menu-nav">
+    <a href="#problem"><span class="num">— 01</span><span>Why</span><span class="arr">↗</span></a>
+    <a href="#solution"><span class="num">— 02</span><span>System</span><span class="arr">↗</span></a>
+    <a href="#process"><span class="num">— 03</span><span>Process</span><span class="arr">↗</span></a>
+    <a href="#deliverables"><span class="num">— 04</span><span>Deliverables</span><span class="arr">↗</span></a>
+    <a href="#offer"><span class="num">— 05</span><span>Program</span><span class="arr">↗</span></a>
+    <a href="#why"><span class="num">— 06</span><span>Studio</span><span class="arr">↗</span></a>
+  </nav>
+  <div class="mobile-menu-foot">
+    <a class="cta-pill" href="#final">Book a discovery call <span class="arr"></span></a>
+  </div>
+</div>
+
+<!-- ========== HERO ========== -->
+<section class="hero-shader" id="hero-shader" data-hero-mood="spotlight">
+  <div class="hero-fade-top" aria-hidden="true"></div>
+  <div class="hero-fade-bottom" aria-hidden="true"></div>
+
+  <div class="hero-shader-inner">
+    <div class="hero-status">
+      <span class="status-led" aria-hidden="true"></span>
+      Cohort 01 · Q1 '26 · Booking open
+    </div>
+
+    <h1 class="hero-shader-h1">
+      <span data-react-line class="hero-shader-line hero-shader-line--lead">
+        make your idea real.
+      </span>
+      <span data-react-line class="hero-shader-line hero-shader-line--sub">
+        From spark to shipped — a guided system, not another course.
+      </span>
+    </h1>
+
+    <div class="hero-shader-ctas">
+      <a class="cta-pill" href="#final">Book a discovery call <span class="arr"></span></a>
+      <a class="btn-ghost" href="#solution">Explore the system <span class="arr-s"></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- Program-stages strip -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Idea</span><span class="sep"></span>
+    <span>Business model</span><span class="sep"></span>
+    <span>MVP</span><span class="sep"></span>
+    <span>Design</span><span class="sep"></span>
+    <span>AI workflows</span><span class="sep"></span>
+    <span>Landing</span><span class="sep"></span>
+    <span>Launch</span><span class="sep"></span>
+    <span>Idea</span><span class="sep"></span>
+    <span>Business model</span><span class="sep"></span>
+    <span>MVP</span><span class="sep"></span>
+    <span>Design</span><span class="sep"></span>
+    <span>AI workflows</span><span class="sep"></span>
+    <span>Landing</span><span class="sep"></span>
+    <span>Launch</span><span class="sep"></span>
+  </div>
+</div>
+
+<!-- ========== VALUE / PROBLEM ========== -->
+<section class="value" id="problem">
+  <div class="value-inner reveal">
+    <div class="value-eye">[ 01 ]&nbsp;&nbsp;The gap</div>
+    <p class="value-body">
+      <span class="dim">Most ideas never become products.</span> Too many tools, too many decisions, no roadmap, no time to figure it all out alone. <em>YouMakeIt</em> is the structure between the spark and the launch — <strong>a guided system, not another course.</strong>
+    </p>
+  </div>
+</section>
+
+<!-- ========== SOLUTION ========== -->
+<section class="section shell" id="solution">
+  <div class="section-head reveal">
+    <div class="section-num">[ 02 ]</div>
+    <div class="section-eye">The system</div>
+    <h2 class="section-title">a guided launch system — <span class="soft">five stages, one shippable product.</span></h2>
+  </div>
+
+  <div class="svc-graphic reveal">
+    <a class="svc-graphic-card" href="#process">
+      <div class="svc-graphic-top">
+        <div class="svc-graphic-icon">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="32" cy="32" r="20"/>
+            <circle cx="32" cy="32" r="10"/>
+            <circle cx="32" cy="32" r="2.5" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="svc-graphic-num">— 01 / 05</div>
+      </div>
+      <h3 class="svc-graphic-title">Clarify the idea<br>and the audience.</h3>
+      <p class="svc-graphic-lede">From fuzzy concept to a positioned, audience-aware proposition you can defend in a sentence.</p>
+      <ul class="svc-graphic-tags">
+        <li>Positioning</li><li>Audience</li><li>Vision</li>
+      </ul>
+      <div class="svc-graphic-foot">
+        <span class="svc-graphic-cta">Stage 01</span>
+        <span class="svc-graphic-arr"><span class="arr-s"></span></span>
+      </div>
+    </a>
+
+    <a class="svc-graphic-card" href="#process">
+      <div class="svc-graphic-top">
+        <div class="svc-graphic-icon">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="8" y="12" width="48" height="40" rx="3"/>
+            <path d="M8 26h48M30 12v40"/>
+            <path d="M16 18h6M16 32h8M38 32h10M38 42h10"/>
+          </svg>
+        </div>
+        <div class="svc-graphic-num">— 02 / 05</div>
+      </div>
+      <h3 class="svc-graphic-title">Define a working<br>business model.</h3>
+      <p class="svc-graphic-lede">Revenue, segments, value exchange, pricing direction — mapped on a single canvas your team agrees on.</p>
+      <ul class="svc-graphic-tags">
+        <li>Canvas</li><li>Revenue</li><li>Segments</li><li>GTM</li>
+      </ul>
+      <div class="svc-graphic-foot">
+        <span class="svc-graphic-cta">Stage 02</span>
+        <span class="svc-graphic-arr"><span class="arr-s"></span></span>
+      </div>
+    </a>
+
+    <a class="svc-graphic-card" href="#process">
+      <div class="svc-graphic-top">
+        <div class="svc-graphic-icon">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M32 6l22 12v22L32 58 10 40V18z"/>
+            <path d="M10 18l22 12 22-12M32 30v28"/>
+          </svg>
+        </div>
+        <div class="svc-graphic-num">— 03 / 05</div>
+      </div>
+      <h3 class="svc-graphic-title">Scope a realistic<br>MVP.</h3>
+      <p class="svc-graphic-lede">Features, flows, priorities — the smallest useful version of the product worth launching.</p>
+      <ul class="svc-graphic-tags">
+        <li>Features</li><li>Flows</li><li>Journeys</li>
+      </ul>
+      <div class="svc-graphic-foot">
+        <span class="svc-graphic-cta">Stage 03</span>
+        <span class="svc-graphic-arr"><span class="arr-s"></span></span>
+      </div>
+    </a>
+
+    <a class="svc-graphic-card" href="#process">
+      <div class="svc-graphic-top">
+        <div class="svc-graphic-icon">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M32 8l4 12 12 4-12 4-4 12-4-12-12-4 12-4z"/>
+            <path d="M48 44l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/>
+            <circle cx="14" cy="48" r="2.5"/>
+          </svg>
+        </div>
+        <div class="svc-graphic-num">— 04 / 05</div>
+      </div>
+      <h3 class="svc-graphic-title">Build with AI<br>and no-code, on purpose.</h3>
+      <p class="svc-graphic-lede">A curated stack picked for your scope and timeline. Tools that accelerate — never decide for you.</p>
+      <ul class="svc-graphic-tags">
+        <li>Cursor</li><li>Lovable</li><li>Framer</li><li>Supabase</li>
+      </ul>
+      <div class="svc-graphic-foot">
+        <span class="svc-graphic-cta">Stage 04</span>
+        <span class="svc-graphic-arr"><span class="arr-s"></span></span>
+      </div>
+    </a>
+
+    <a class="svc-graphic-card" href="#process">
+      <div class="svc-graphic-top">
+        <div class="svc-graphic-icon">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 50l36-36"/>
+            <path d="M30 14h20v20"/>
+            <circle cx="14" cy="50" r="4"/>
+          </svg>
+        </div>
+        <div class="svc-graphic-num">— 05 / 05</div>
+      </div>
+      <h3 class="svc-graphic-title">Go live with<br>intention.</h3>
+      <p class="svc-graphic-lede">Landing page, messaging, launch plan, early acquisition — and the next-iteration roadmap.</p>
+      <ul class="svc-graphic-tags">
+        <li>Landing</li><li>Messaging</li><li>Launch plan</li>
+      </ul>
+      <div class="svc-graphic-foot">
+        <span class="svc-graphic-cta">Stage 05</span>
+        <span class="svc-graphic-arr"><span class="arr-s"></span></span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ========== PROCESS ========== -->
+<section class="section shell" id="process">
+  <div class="section-head reveal">
+    <div class="section-num">[ 03 ]</div>
+    <div class="section-eye">Process</div>
+    <h2 class="section-title">five stages from <em>idea</em> to launch.</h2>
+  </div>
+
+  <div class="proc-flow reveal">
+    <div class="proc-flow-grid">
+      <div class="proc-flow-track" aria-hidden="true">
+        <span class="proc-flow-line"></span>
+      </div>
+
+      <div class="proc-flow-card up" style="--col: 1">
+        <div class="proc-flow-dot"></div>
+        <div class="proc-flow-num">01</div>
+        <h3 class="proc-flow-name">Clarity</h3>
+        <p class="proc-flow-desc">Sharpen the spark. Audience, opportunity, vision.</p>
+        <ul class="proc-flow-items">
+          <li>Positioning</li>
+          <li>Audience</li>
+          <li>Vision doc</li>
+        </ul>
+        <div class="proc-flow-dur">1 week</div>
+      </div>
+
+      <div class="proc-flow-card down" style="--col: 2">
+        <div class="proc-flow-dot"></div>
+        <div class="proc-flow-num">02</div>
+        <h3 class="proc-flow-name">Strategy</h3>
+        <p class="proc-flow-desc">Shape the offer and the economics on a single canvas.</p>
+        <ul class="proc-flow-items">
+          <li>Canvas</li>
+          <li>Pricing</li>
+          <li>GTM</li>
+        </ul>
+        <div class="proc-flow-dur">1–2 weeks</div>
+      </div>
+
+      <div class="proc-flow-card up" style="--col: 3">
+        <div class="proc-flow-dot"></div>
+        <div class="proc-flow-num">03</div>
+        <h3 class="proc-flow-name">MVP</h3>
+        <p class="proc-flow-desc">Scope the smallest useful version. Features, flows, priorities.</p>
+        <ul class="proc-flow-items">
+          <li>Features</li>
+          <li>User flows</li>
+          <li>Scope sign-off</li>
+        </ul>
+        <div class="proc-flow-dur">1–2 weeks</div>
+      </div>
+
+      <div class="proc-flow-card down" style="--col: 4">
+        <div class="proc-flow-dot"></div>
+        <div class="proc-flow-num">04</div>
+        <h3 class="proc-flow-name">Build</h3>
+        <p class="proc-flow-desc">AI, no-code, Figma, automation — the working version.</p>
+        <ul class="proc-flow-items">
+          <li>Figma</li>
+          <li>No-code</li>
+          <li>AI workflows</li>
+        </ul>
+        <div class="proc-flow-dur">3–4 weeks</div>
+      </div>
+
+      <div class="proc-flow-card up" style="--col: 5">
+        <div class="proc-flow-dot"></div>
+        <div class="proc-flow-num">05</div>
+        <h3 class="proc-flow-name">Launch</h3>
+        <p class="proc-flow-desc">Go-live, early acquisition, and the next-iteration plan.</p>
+        <ul class="proc-flow-items">
+          <li>Landing page</li>
+          <li>Launch plan</li>
+          <li>v0.1 ship</li>
+        </ul>
+        <div class="proc-flow-dur">1 week</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== DELIVERABLES ========== -->
+<section class="section shell" id="deliverables">
+  <div class="section-head reveal">
+    <div class="section-num">[ 04 ]</div>
+    <div class="section-eye">Deliverables</div>
+    <h2 class="section-title">what you walk <em>away</em> with.</h2>
+  </div>
+
+  <div class="work-grid reveal">
+    <article class="work-card">
+      <div class="work-thumb">
+        <div class="work-thumb-fill fill-1"></div>
+        <div class="work-stripe"></div>
+        <div class="work-tag">Strategy</div>
+        <div class="work-num">— 01 / 03</div>
+        <div class="work-label">▣ Concept · Canvas</div>
+      </div>
+      <div class="work-meta"><span>Strategy</span><span>Foundation</span></div>
+      <h3 class="work-name">Validated business model</h3>
+      <p class="work-summary">A positioned proposition and a one-page canvas — segments, value exchange, revenue logic, and a realistic MVP scope.</p>
+    </article>
+
+    <article class="work-card">
+      <div class="work-thumb">
+        <div class="work-thumb-fill fill-2"></div>
+        <div class="work-stripe"></div>
+        <div class="work-tag">Product</div>
+        <div class="work-num">— 02 / 03</div>
+        <div class="work-label">▣ UX · IA</div>
+      </div>
+      <div class="work-meta"><span>Product</span><span>Build-ready</span></div>
+      <h3 class="work-name">UX flows &amp; AI setup</h3>
+      <p class="work-summary">Screen-by-screen flows, information architecture, and a purposeful AI workflow setup — the blueprint your build follows.</p>
+    </article>
+
+    <article class="work-card">
+      <div class="work-thumb">
+        <div class="work-thumb-fill fill-3"></div>
+        <div class="work-stripe"></div>
+        <div class="work-tag">Launch</div>
+        <div class="work-num">— 03 / 03</div>
+        <div class="work-label">▣ Brand · Web</div>
+      </div>
+      <div class="work-meta"><span>Launch</span><span>Public moment</span></div>
+      <h3 class="work-name">Landing &amp; launch kit</h3>
+      <p class="work-summary">Landing page structure and copy, a launch strategy, pitch-ready deck, and a roadmap for the next version.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ========== OFFER ========== -->
+<section class="section shell" id="offer">
+  <div class="section-head reveal">
+    <div class="section-num">[ 05 ]</div>
+    <div class="section-eye">Program</div>
+    <h2 class="section-title">choose your level of <em>support</em>.</h2>
+  </div>
+
+  <div class="offer-grid reveal">
+    <article class="ocard">
+      <div class="ocard-head">
+        <span class="ocard-tag">Sprint</span>
+        <span class="ocard-num">— 01 / 03</span>
+      </div>
+      <h3>Strategy <em>Sprint</em></h3>
+      <p class="ocard-blurb">For people who need clarity, structure, and a launch roadmap before committing to a build.</p>
+      <ul class="ocard-list">
+        <li>Business model canvas</li>
+        <li>MVP scope &amp; priorities</li>
+        <li>Positioning &amp; messaging direction</li>
+        <li>90-day launch roadmap</li>
+      </ul>
+      <a href="#final" class="ocard-cta">
+        Book a call
+        <span class="ocard-cta-arr"><span class="arr-s"></span></span>
+      </a>
+    </article>
+
+    <article class="ocard featured">
+      <div class="ocard-head">
+        <span class="ocard-tag">★ Most chosen</span>
+        <span class="ocard-num">— 02 / 03</span>
+      </div>
+      <h3>Launch <em>Program</em></h3>
+      <p class="ocard-blurb">The core YouMakeIt experience — strategy, build, and launch in a guided multi-week format.</p>
+      <ul class="ocard-list">
+        <li>Weekly 1:1 coaching sessions</li>
+        <li>MVP strategy &amp; UX direction</li>
+        <li>Curated AI &amp; no-code workflows</li>
+        <li>Landing page &amp; brand surface</li>
+        <li>Launch plan &amp; early acquisition</li>
+      </ul>
+      <a href="#final" class="ocard-cta">
+        Book a call
+        <span class="ocard-cta-arr"><span class="arr-s"></span></span>
+      </a>
+    </article>
+
+    <article class="ocard">
+      <div class="ocard-head">
+        <span class="ocard-tag">Studio</span>
+        <span class="ocard-num">— 03 / 03</span>
+      </div>
+      <h3>Build <em>Partner</em></h3>
+      <p class="ocard-blurb">For founders or companies who want hands-on execution, not just guidance.</p>
+      <ul class="ocard-list">
+        <li>Strategy &amp; product direction</li>
+        <li>UX/UI design &amp; product structure</li>
+        <li>Landing page &amp; launch assets</li>
+        <li>Hands-on build support</li>
+        <li>Roadmap to v2</li>
+      </ul>
+      <a href="#final" class="ocard-cta">
+        Book a call
+        <span class="ocard-cta-arr"><span class="arr-s"></span></span>
+      </a>
+    </article>
+  </div>
+</section>
+
+<!-- ========== WHY ========== -->
+<section class="section shell" id="why">
+  <div class="section-head reveal">
+    <div class="section-num">[ 06 ]</div>
+    <div class="section-eye">The principle</div>
+    <h2 class="section-title">designed by a senior <em>product designer</em>, not a generic AI coach.</h2>
+  </div>
+
+  <div class="why-grid reveal">
+    <div class="why-cell">
+      <span class="num">— 01</span>
+      <span class="label">Senior <em>UX &amp; product</em> design.<span class="small">Not advice. Real product practice with shipped surface area.</span></span>
+    </div>
+    <div class="why-cell">
+      <span class="num">— 02</span>
+      <span class="label">AI as an <em>accelerator</em> — never a crutch.<span class="small">The new tools earn their place inside a designed workflow.</span></span>
+    </div>
+    <div class="why-cell">
+      <span class="num">— 03</span>
+      <span class="label">Clear <em>business thinking</em> behind every choice.<span class="small">Design decisions tied back to the model, not to taste.</span></span>
+    </div>
+    <div class="why-cell">
+      <span class="num">— 04</span>
+      <span class="label">Premium <em>visual</em> &amp; product quality.<span class="small">Surfaces that hold up next to the products you admire.</span></span>
+    </div>
+    <div class="why-cell">
+      <span class="num">— 05</span>
+      <span class="label">Practical, <em>outcome-driven</em> coaching.<span class="small">Every week ends with something shippable, not slides.</span></span>
+    </div>
+    <div class="why-cell">
+      <span class="num">— 06</span>
+      <span class="label">From strategy to <em>launched</em> product.<span class="small">A live MVP and a roadmap, not a deck about one.</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== END CTA ========== -->
+<div class="end-cta-wrap" id="final">
+  <div class="end-cta-card reveal" id="end-cta-card" data-hero-mood="bloom">
+    <div class="end-cta-vignette" aria-hidden="true"></div>
+    <div class="end-cta-card-inner">
+      <div class="end-cta-eye">Cohort 01 · Q1 '26</div>
+      <h2 class="end-cta-title" data-react-line>ready to make<br>your idea <em>real?</em></h2>
+      <p class="end-cta-sub" data-react-line>Bring your idea. We'll turn it into a structured product, a clear business model, and a launch-ready MVP — within weeks, not quarters.</p>
+      <div class="end-cta-btn">
+        <a class="cta-pill" href="mailto:studio@fedelo.io?subject=YouMakeIt%20%E2%80%94%20discovery%20call">
+          Book a discovery call <span class="arr"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer class="foot">
+  <div>
+    <div class="foot-lede">
+      <span class="it">Let's</span> build<br>something <span class="accent">shippable</span>.
+    </div>
+    <a class="cta-pill" href="mailto:studio@fedelo.io">studio@fedelo.io <span class="arr"></span></a>
+  </div>
+  <div>
+    <h6>Program</h6>
+    <ul>
+      <li><a href="#problem">Why</a></li>
+      <li><a href="#solution">System</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#deliverables">Deliverables</a></li>
+    </ul>
+  </div>
+  <div>
+    <h6>Apply</h6>
+    <ul>
+      <li><a href="#offer">Strategy Sprint</a></li>
+      <li><a href="#offer">Launch Program</a></li>
+      <li><a href="#offer">Build Partner</a></li>
+      <li><a href="#final">Discovery call</a></li>
+    </ul>
+  </div>
+  <div>
+    <h6>Elsewhere</h6>
+    <ul>
+      <li><a href="https://fedelo.studio" rel="noopener">Fedelo Studio ↗</a></li>
+      <li><a href="#" rel="noopener">LinkedIn ↗</a></li>
+      <li><a href="#" rel="noopener">Read.cv ↗</a></li>
+      <li><a href="#" rel="noopener">Instagram ↗</a></li>
+    </ul>
+  </div>
+</footer>
+
+<div class="foot-bottom">
+  <span>© 2026 YouMakeIt · Cohort 01</span>
+  <span class="foot-attr">
+    <span class="foot-attr-mark"></span>
+    A program by <a href="https://fedelo.studio" rel="noopener">Fedelo Studio</a>
+  </span>
+  <span>v.01 · Booking open</span>
+</div>
+
+<!-- ============================================================
+     Behaviour + WebGL flow-field background
+     ============================================================ -->
+<script src="/js/app.js"></script>
+<script src="/js/shader-bg.js"></script>
+</body>
+</html>

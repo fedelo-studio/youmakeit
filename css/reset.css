@@ -1,0 +1,41 @@
+/* ============================================================
+   Reset — box-sizing, base elements, typography defaults
+   Mirrors fedelo.studio.website/css/reset.css.
+   ============================================================ */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg-soft);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* Theme-color transitions on dark-mode toggle (YouMakeIt-only) */
+html, body { transition: background-color .35s var(--ease-out), color .35s var(--ease-out); }
+
+body {
+  font-size: var(--text-base);
+  line-height: var(--lh-relaxed);
+  letter-spacing: var(--ls-snug);
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: var(--hot); color: var(--fg); }
+
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+input, textarea, select { font: inherit; color: inherit; }
+
+/* Italic is not part of Fedelo / YouMakeIt — neutralise browser defaults.
+   Headlines used to lean on <em>; the migrated markup tags those with
+   .it which now uses medium weight (a structural emphasis, not slant). */
+em, i { font-style: normal; }

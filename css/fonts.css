@@ -1,0 +1,39 @@
+/* ============================================================
+   Strawford — local webfont
+   YouMakeIt ships only the 4 weights it actually uses
+   (light 300, regular 400, medium 500, bold 700) — no italics.
+   Files live in /assets/fonts/.
+   ============================================================ */
+
+@font-face {
+  font-family: 'Strawford';
+  src: url('../assets/fonts/strawford-light-webfont.woff2') format('woff2'),
+       url('../assets/fonts/strawford-light-webfont.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Strawford';
+  src: url('../assets/fonts/strawford-regular-webfont.woff2') format('woff2'),
+       url('../assets/fonts/strawford-regular-webfont.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Strawford';
+  src: url('../assets/fonts/strawford-medium-webfont.woff2') format('woff2'),
+       url('../assets/fonts/strawford-medium-webfont.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Strawford';
+  src: url('../assets/fonts/strawford-bold-webfont.woff2') format('woff2'),
+       url('../assets/fonts/strawford-bold-webfont.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
